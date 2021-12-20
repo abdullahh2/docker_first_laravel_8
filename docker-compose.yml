@@ -17,6 +17,7 @@ services:
 #    entrypoint: sh -c "apt install php-xml php-mbstring"
     volumes:
       - ./app:/app
+      
   
   db:
     image: mysql:5.7
