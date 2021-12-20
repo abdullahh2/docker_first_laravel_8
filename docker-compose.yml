@@ -1,0 +1,18 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:alpine
+
+    volumes:
+      - ./app:/app
+      - ./conf/:/etc/nginx/conf.d/
+
+    ports:
+      - 80:80
+    depends_on:
+      - php
+  php:
+    image: php:7.4-fpm-alpine
+#    entrypoint: sh -c "apt install php-xml php-mbstring"
+    volumes:
+      - ./app:/app
