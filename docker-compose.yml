@@ -11,8 +11,23 @@ services:
       - 80:80
     depends_on:
       - php
+      - db
   php:
     image: php:7.4-fpm-alpine
 #    entrypoint: sh -c "apt install php-xml php-mbstring"
     volumes:
       - ./app:/app
+  
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./database:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=laravel
+    ports:
+      - 3306:3306
+
